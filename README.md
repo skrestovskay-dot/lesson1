@@ -23,7 +23,6 @@
             margin: 0 auto;
         }
 
-        /* Header / Title */
         .header {
             text-align: center;
             margin-bottom: 30px;
@@ -64,7 +63,6 @@
             font-weight: 500;
         }
 
-        /* Cards and sections */
         .section {
             background: white;
             border-radius: 32px;
@@ -105,7 +103,6 @@
             padding: 24px 28px;
         }
 
-        /* Festival Gallery (Warm-up) */
         .festival-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -141,6 +138,11 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
         }
 
         .festival-card h4 {
@@ -155,7 +157,6 @@
             font-size: 0.9rem;
         }
 
-        /* Match game */
         .match-grid {
             display: flex;
             flex-wrap: wrap;
@@ -186,7 +187,6 @@
             transition: all 0.3s;
             text-align: center;
             font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .match-item:hover {
@@ -211,7 +211,6 @@
             color: #2c3e50;
         }
 
-        /* Reading + Jigsaw rooms */
         .jigsaw-row {
             display: flex;
             flex-wrap: wrap;
@@ -263,7 +262,6 @@
             font-weight: bold;
         }
 
-        /* Grammar interactive */
         .grammar-ex {
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             border-radius: 24px;
@@ -317,7 +315,6 @@
             color: white;
         }
 
-        /* True or false game */
         .tf-grid {
             display: flex;
             gap: 20px;
@@ -375,7 +372,6 @@
             margin-top: 12px;
         }
 
-        /* Spinner / My Perfect Festival */
         .spinner-area {
             text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -447,19 +443,13 @@
             transform: scale(1.05);
         }
 
-        .download-btn {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            display: inline-block;
-            margin-top: 20px;
-            text-align: center;
-        }
-
         @media (max-width: 700px) {
             .section-content {
                 padding: 16px;
             }
             .festival-img {
                 height: 150px;
+                font-size: 3rem;
             }
         }
     </style>
@@ -485,17 +475,17 @@
             <p><strong>👉 Click on a festival you find most exciting or scary!</strong> Share your guess with the class.</p>
             <div class="festival-gallery" id="festivalGallery">
                 <div class="festival-card" data-fest="kukeri">
-                    <img class="festival-img" src="https://images.unsplash.com/photo-1542367592-8849eb950fd2?w=400&h=200&fit=crop" alt="Kukeri Festival">
+                    <div class="festival-img">🎭🔔</div>
                     <h4>🎭 Kukeri (Bulgaria)</h4>
                     <p>Scary masks, bells, winter tradition</p>
                 </div>
                 <div class="festival-card" data-fest="daydead">
-                    <img class="festival-img" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=200&fit=crop" alt="Day of the Dead">
+                    <div class="festival-img">💀🌼</div>
                     <h4>💀 Day of the Dead (Mexico)</h4>
                     <p>Altars, marigolds, skull face paint</p>
                 </div>
                 <div class="festival-card" data-fest="tomatina">
-                    <img class="festival-img" src="https://images.unsplash.com/photo-1551173758-0e2ef9c0b5b5?w=400&h=200&fit=crop" alt="La Tomatina">
+                    <div class="festival-img">🍅🍅🍅</div>
                     <h4>🍅 La Tomatina (Spain)</h4>
                     <p>Tomato fight, old clothes, last Wednesday of August</p>
                 </div>
@@ -534,7 +524,7 @@
         </div>
     </div>
 
-    <!-- 3. JIGSAW READING (3 texts + adjectives) -->
+    <!-- 3. JIGSAW READING -->
     <div class="section">
         <div class="section-title">
             📚 3. JIGSAW READING <span>breakout rooms style</span>
@@ -573,7 +563,7 @@
         </div>
     </div>
 
-    <!-- 4. GRAMMAR: Present Simple vs Present Continuous -->
+    <!-- 4. GRAMMAR -->
     <div class="section">
         <div class="section-title">
             ✍️ 4. GRAMMAR FOCUS <span>Present Simple / Continuous</span>
@@ -617,7 +607,7 @@
         </div>
     </div>
 
-    <!-- 5. TRUE OR FALSE GAME -->
+    <!-- 5. TRUE OR FALSE -->
     <div class="section">
         <div class="section-title">
             🎧 5. LISTENING: True or False? <span>thumbs up/down</span>
@@ -652,7 +642,7 @@
         </div>
     </div>
 
-    <!-- 6. PRODUCTION: My Perfect Festival (Spinner style) -->
+    <!-- 6. PRODUCTION -->
     <div class="section">
         <div class="section-title">
             🎡 6. MY PERFECT FESTIVAL <span>speaking & creativity</span>
@@ -670,15 +660,14 @@
         </div>
     </div>
 
-    <!-- Download button for the whole interactive PDF/HTML -->
     <div style="text-align: center; margin: 30px 0 20px;">
-        <button id="downloadPageBtn" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 12px 32px;">📥 Download this lesson as HTML (save & use offline)</button>
+        <button id="downloadPageBtn" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 12px 32px;">📥 Download this lesson as HTML</button>
         <p style="margin-top: 10px; font-size: 0.75rem; color: white;">💡 Save as .html and open in browser — all interactive tasks work!</p>
     </div>
 </div>
 
 <script>
-    // ---------- 1. WARM-UP SELECTION ----------
+    // Warm-up selection
     const cards = document.querySelectorAll('.festival-card');
     const warmupMsg = document.getElementById('warmupMsg');
     cards.forEach(card => {
@@ -692,7 +681,7 @@
         });
     });
 
-    // ---------- 2. MATCHING GAME (picture-concept + word) ----------
+    // Matching game
     let selectedTerm = null;
     const termItems = document.querySelectorAll('[data-term]');
     const wordItems = document.querySelectorAll('[data-word]');
@@ -740,14 +729,14 @@
                 resetMatchSelection();
                 selectedTerm = null;
             } else {
-                matchFeedback.innerHTML = `❌ Wrong! "${wordEl.innerText}" does not match "${document.querySelector('[data-term="'+selectedTerm+'"]').innerText}". Try again.`;
+                matchFeedback.innerHTML = `❌ Wrong! "${wordEl.innerText}" does not match. Try again.`;
                 resetMatchSelection();
                 selectedTerm = null;
             }
         });
     });
 
-    // 3. ADJECTIVES CHECK
+    // Adjectives checker
     window.checkAdjectives = function(festival) {
         let input, feedback, expected = [];
         if(festival === 'kukeri') {
@@ -768,11 +757,11 @@
         if(found.length >= 2) {
             feedback.innerHTML = `✅ Great adjectives! You have: ${found.slice(0,3).join(', ')}. Perfect!`;
         } else {
-            feedback.innerHTML = `💡 Try to include adjectives like: ${expected.slice(0,4).join(', ')}. Re-read the text!`;
+            feedback.innerHTML = `💡 Try adjectives like: ${expected.slice(0,4).join(', ')}. Re-read the text!`;
         }
     };
 
-    // 4. GRAMMAR checker
+    // Grammar checker
     window.checkGrammar = function(btn, correctAnswer) {
         const parentDiv = btn.closest('.grammar-question');
         const btns = parentDiv.querySelectorAll('button');
@@ -790,7 +779,7 @@
         setTimeout(() => globalMsg.innerHTML = '', 2500);
     };
 
-    // 5. TRUE OR FALSE
+    // True or False
     window.answerTF = function(statementId, isCorrectFalse) {
         const resultDiv = document.getElementById(`tf${statementId}Result`);
         if(isCorrectFalse) {
@@ -802,7 +791,7 @@
         }
     };
 
-    // 6. SPIN FESTIVAL
+    // Spin festival
     const spinBtn = document.getElementById('spinFestivalBtn');
     const outputDiv = document.getElementById('festivalOutput');
     const whereOpts = ['at the beach', 'in a park', 'in city streets'];
@@ -816,7 +805,7 @@
         outputDiv.innerHTML = `🎉 MY FESTIVAL: It happens ${randWhere}. People ${randThrow}. They do it ${randWhy}. <br>✨ Now say: "My festival is ${randWhere}. We ${randThrow}. We do it ${randWhy}."`;
     });
 
-    // DOWNLOAD AS HTML (full interactive snapshot)
+    // Download
     document.getElementById('downloadPageBtn').addEventListener('click', function() {
         const htmlContent = document.documentElement.outerHTML;
         const blob = new Blob([htmlContent], {type: 'text/html'});
