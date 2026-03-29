@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 30px 20px;
             color: #1e2a3e;
+            min-height: 100vh;
         }
 
         .container {
@@ -113,7 +114,7 @@
 
         .festival-card {
             flex: 1;
-            min-width: 240px;
+            min-width: 260px;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             border-radius: 28px;
             overflow: hidden;
@@ -138,11 +139,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            display: block;
         }
 
         .festival-card h4 {
@@ -449,7 +446,6 @@
             }
             .festival-img {
                 height: 150px;
-                font-size: 3rem;
             }
         }
     </style>
@@ -475,17 +471,17 @@
             <p><strong>👉 Click on a festival you find most exciting or scary!</strong> Share your guess with the class.</p>
             <div class="festival-gallery" id="festivalGallery">
                 <div class="festival-card" data-fest="kukeri">
-                    <div class="festival-img">🎭🔔</div>
+                    <img class="festival-img" src="https://cdn.pixabay.com/photo/2017/07/13/00/26/kukeri-2498551_640.jpg" alt="Kukeri Festival" onerror="this.src='https://placehold.co/400x200/667eea/white?text=🎭+Kukeri+Festival'">
                     <h4>🎭 Kukeri (Bulgaria)</h4>
-                    <p>Scary masks, bells, winter tradition</p>
+                    <p>Scary masks, bells, winter tradition to scare evil spirits</p>
                 </div>
                 <div class="festival-card" data-fest="daydead">
-                    <div class="festival-img">💀🌼</div>
+                    <img class="festival-img" src="https://cdn.pixabay.com/photo/2015/09/23/16/25/day-of-the-dead-954117_640.jpg" alt="Day of the Dead" onerror="this.src='https://placehold.co/400x200/764ba2/white?text=💀+Day+of+the+Dead'">
                     <h4>💀 Day of the Dead (Mexico)</h4>
-                    <p>Altars, marigolds, skull face paint</p>
+                    <p>Altars, marigolds, skull face paint, celebrating ancestors</p>
                 </div>
                 <div class="festival-card" data-fest="tomatina">
-                    <div class="festival-img">🍅🍅🍅</div>
+                    <img class="festival-img" src="https://cdn.pixabay.com/photo/2012/03/01/00/40/la-tomatina-19458_640.jpg" alt="La Tomatina" onerror="this.src='https://placehold.co/400x200/f5576c/white?text=🍅+La+Tomatina'">
                     <h4>🍅 La Tomatina (Spain)</h4>
                     <p>Tomato fight, old clothes, last Wednesday of August</p>
                 </div>
@@ -675,9 +671,9 @@
             cards.forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
             const fest = card.getAttribute('data-fest');
-            if(fest === 'kukeri') warmupMsg.innerHTML = '🎭 Great choice! Kukeri: scary masks, bells, winter in Bulgaria.';
-            else if(fest === 'daydead') warmupMsg.innerHTML = '💀 Day of the Dead: colorful altars, happy remembrance.';
-            else warmupMsg.innerHTML = '🍅 La Tomatina: tomato fight in Spain, very messy!';
+            if(fest === 'kukeri') warmupMsg.innerHTML = '🎭 Great choice! Kukeri: scary masks, bells, winter in Bulgaria. They scare evil spirits!';
+            else if(fest === 'daydead') warmupMsg.innerHTML = '💀 Day of the Dead: colorful altars, happy remembrance. Mexicans celebrate their ancestors with joy!';
+            else warmupMsg.innerHTML = '🍅 La Tomatina: tomato fight in Spain, very messy! Thousands of tomatoes are thrown every year.';
         });
     });
 
@@ -720,7 +716,7 @@
             if (correct) {
                 if (!matchesMade[selectedTerm+word]) {
                     matchesMade[selectedTerm+word] = true;
-                    matchFeedback.innerHTML = `🎉 Correct match! "${wordEl.innerText}" ↔ "${document.querySelector('[data-term="'+selectedTerm+'"]').innerText}". Great!`;
+                    matchFeedback.innerHTML = `🎉 Correct match! "${wordEl.innerText}" ↔ "${document.querySelector('[data-term="'+selectedTerm+'"]').innerText}". Great job!`;
                     wordEl.style.opacity = '0.6';
                     wordEl.style.textDecoration = 'line-through';
                 } else {
@@ -729,7 +725,7 @@
                 resetMatchSelection();
                 selectedTerm = null;
             } else {
-                matchFeedback.innerHTML = `❌ Wrong! "${wordEl.innerText}" does not match. Try again.`;
+                matchFeedback.innerHTML = `❌ Wrong! "${wordEl.innerText}" does not match. Try again!`;
                 resetMatchSelection();
                 selectedTerm = null;
             }
@@ -742,22 +738,22 @@
         if(festival === 'kukeri') {
             input = document.getElementById('adjKukeri').value.toLowerCase();
             feedback = document.getElementById('feedbackKukeri');
-            expected = ['scary', 'loud', 'colourful', 'noisy', 'exciting', 'traditional'];
+            expected = ['scary', 'loud', 'colourful', 'noisy', 'exciting', 'traditional', 'ancient'];
         } else if(festival === 'dead') {
             input = document.getElementById('adjDead').value.toLowerCase();
             feedback = document.getElementById('feedbackDead');
-            expected = ['happy', 'colourful', 'traditional', 'special', 'celebratory'];
+            expected = ['happy', 'colourful', 'traditional', 'special', 'celebratory', 'joyful'];
         } else {
             input = document.getElementById('adjTomatina').value.toLowerCase();
             feedback = document.getElementById('feedbackTomatina');
-            expected = ['fun', 'messy', 'loud', 'exciting', 'dirty', 'busy'];
+            expected = ['fun', 'messy', 'loud', 'exciting', 'dirty', 'busy', 'crazy'];
         }
         let words = input.split(/[ ,]+/).filter(w => w.length>2);
         let found = words.filter(w => expected.includes(w));
         if(found.length >= 2) {
-            feedback.innerHTML = `✅ Great adjectives! You have: ${found.slice(0,3).join(', ')}. Perfect!`;
+            feedback.innerHTML = `✅ Excellent! Great adjectives: ${found.slice(0,3).join(', ')}. Perfect! 🌟`;
         } else {
-            feedback.innerHTML = `💡 Try adjectives like: ${expected.slice(0,4).join(', ')}. Re-read the text!`;
+            feedback.innerHTML = `💡 Try adjectives like: ${expected.slice(0,4).join(', ')}. Read the text again!`;
         }
     };
 
@@ -775,15 +771,15 @@
             }
         });
         const globalMsg = document.getElementById('grammarGlobalMsg');
-        globalMsg.innerHTML = '✅ Great! Present Simple = facts / habits; Present Continuous = now.';
-        setTimeout(() => globalMsg.innerHTML = '', 2500);
+        globalMsg.innerHTML = '✅ Great! Present Simple = facts / habits; Present Continuous = happening now.';
+        setTimeout(() => globalMsg.innerHTML = '', 3000);
     };
 
     // True or False
     window.answerTF = function(statementId, isCorrectFalse) {
         const resultDiv = document.getElementById(`tf${statementId}Result`);
         if(isCorrectFalse) {
-            resultDiv.innerHTML = '✅ Correct! The statement is FALSE.';
+            resultDiv.innerHTML = '✅ Correct! The statement is FALSE. Well done!';
             resultDiv.style.color = 'green';
         } else {
             resultDiv.innerHTML = '❌ Oops! That was incorrect. Check the texts again.';
@@ -794,15 +790,15 @@
     // Spin festival
     const spinBtn = document.getElementById('spinFestivalBtn');
     const outputDiv = document.getElementById('festivalOutput');
-    const whereOpts = ['at the beach', 'in a park', 'in city streets'];
-    const throwOpts = ['throw tomatoes', 'throw flower petals', 'throw colored powder'];
-    const whyOpts = ['to scare away bad luck', 'to celebrate family', 'just for fun'];
+    const whereOpts = ['at the beach 🏖️', 'in a park 🌳', 'in city streets 🏙️', 'in the mountains ⛰️', 'near a river 🌊'];
+    const throwOpts = ['throw tomatoes 🍅', 'throw flower petals 🌸', 'throw colored powder 🎨', 'throw confetti 🎊', 'throw water balloons 💧'];
+    const whyOpts = ['to scare away bad luck 😈', 'to celebrate family 👨‍👩‍👧', 'just for fun 🎉', 'to welcome spring 🌸', 'to honor ancestors 👻'];
     
     spinBtn.addEventListener('click', () => {
         const randWhere = whereOpts[Math.floor(Math.random() * whereOpts.length)];
         const randThrow = throwOpts[Math.floor(Math.random() * throwOpts.length)];
         const randWhy = whyOpts[Math.floor(Math.random() * whyOpts.length)];
-        outputDiv.innerHTML = `🎉 MY FESTIVAL: It happens ${randWhere}. People ${randThrow}. They do it ${randWhy}. <br>✨ Now say: "My festival is ${randWhere}. We ${randThrow}. We do it ${randWhy}."`;
+        outputDiv.innerHTML = `🎉 MY UNIQUE FESTIVAL! 🎉<br><br>📍 Location: ${randWhere}<br>🍅 Activity: People ${randThrow}<br>✨ Reason: ${randWhy}<br><br>💬 Now describe: "My festival happens ${randWhere}. We ${randThrow}. We do it ${randWhy}."`;
     });
 
     // Download
